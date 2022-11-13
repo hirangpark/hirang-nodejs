@@ -25,8 +25,6 @@ jobs:
        script: |    
          cd /home/ec2-user/hirang-nodejs
          git pull
-         semp0110@naver.com
-         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
          docker stop nodejs
          docker rm nodejs
          sudo docker build --progress=tty --tag hirang-nodejs .
