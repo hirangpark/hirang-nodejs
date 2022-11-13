@@ -24,5 +24,4 @@ jobs:
          cd /home/ec2-user/hirang-nodejs
          docker stop nodejs
          docker rm nodejs
-         sudo docker build --progress=tty --tag hirang-nodejs .
-         docker run --name nodejs -d -p 8080:8080 hirang-nodejs
+         
