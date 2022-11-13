@@ -7,11 +7,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  checkout:
-   runs-on: ubuntu-latest
-   steps:
-     - run: ls -al
-     - uses: actions/checkout@v3
+#   checkout:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: ls -al
+#      - uses: actions/checkout@v3
   build:
     runs-on: ubuntu-latest
     steps:
@@ -24,6 +24,9 @@ jobs:
        key: ${{secrets.AWS_HIRANG_SSH}}
        script: |    
          cd /home/ec2-user/hirang-nodejs
+         git pull
+         semp0110@naver.com
+         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
          docker stop nodejs
          docker rm nodejs
          sudo docker build --progress=tty --tag hirang-nodejs .
