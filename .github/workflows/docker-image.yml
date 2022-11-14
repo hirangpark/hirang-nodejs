@@ -10,9 +10,10 @@ jobs:
   checkout:
    runs-on: ubuntu-latest
    steps:
-     - run: 
-         pwd
-         ls -al
+     - run: echo 'hello world'
+     - run: pwd
+     - run: ls -al
+         
    
 #   build:
 #     runs-on: ubuntu-latest
