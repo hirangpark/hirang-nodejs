@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: 랑스의 테스트
 
 on:
   push:
