@@ -10,7 +10,8 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Hello, GitHub Actions!'
+      - name: Print Echo
+        run: echo 'Hello, GitHub Actions!'
   pwd-ls:
     name: PWD & LS
     runs-on: ubuntu-latest
