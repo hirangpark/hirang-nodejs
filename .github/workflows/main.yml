@@ -1,0 +1,52 @@
+name: 랑스의 테스트
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Echo
+        run: echo 'Hello, GitHub Actions!'
+  pwd-ls:
+    name: PWD & LS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print working directory
+        run: pwd
+      - name: List files
+        run: ls -al
+  checkout:
+     name: Check out
+     runs-on: ubuntu-latest
+     steps:
+       - run: ls -al
+       - uses: actions/checkout@v3
+       - run: ls -al
+       - run: pwd
+       - run: cat .github/workflows/docker-image.yml
+       - run: cat ./app.js
+        
+         
+   
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: SSH Remote Commands
+#       uses: appleboy/ssh-action@v0.1.5
+#       with:
+#        host: ${{secrets.AWS_HIRANG_IP}}
+#        username: ${{secrets.AWS_HIRANG_USERNAME}}
+#        key: ${{secrets.AWS_HIRANG_SSH}}
+#        script: |    
+#          cd /home/ec2-user/hirang-nodejs
+#          git pull
+#          docker stop nodejs
+#          docker rm nodejs
+#          sudo docker build --progress=tty --tag hirang-nodejs .
+#          docker run --name nodejs -d -p 8080:8080 hirang-nodejs
