@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: GITHUB_REF
-        run: echo ${{github.ref}}
+        run: echo ${{github.ref}} 
+      - name: GITHUB_SHA
+        run: echo ${{github.sha}}
   pwd-ls:
     name: PWD & LS
     runs-on: ubuntu-latest
