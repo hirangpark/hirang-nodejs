@@ -15,11 +15,11 @@ jobs:
       - name: GITHUB_SHA
         run: echo ${{github.sha}}
       - name: STATE success
-        run: echo success()
+        run: echo ${{success()}}
       - name: STATE failure
-        run: echo failure()
+        run: echo ${{failure()}}
       - name: STATE cancelled
-        run: echo cancelled()
+        run: echo ${{cancelled()}}
         
   pwd-ls:
     name: PWD & LS
