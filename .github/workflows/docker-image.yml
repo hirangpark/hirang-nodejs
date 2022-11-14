@@ -20,6 +20,16 @@ jobs:
         run: pwd
       - name: List files
         run: ls -al
+  checkout:
+     name: Check out
+     runs-on: ubuntu-latest
+     steps:
+       - run: ls -al
+       - uses: actions/checkout@v3
+       - run: ls -al
+       - run: pwd
+       - run: cat .github/workflows/checkout.yml
+        
          
    
 #   build:
