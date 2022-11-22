@@ -28,6 +28,7 @@ jobs:
      name: Check out
      runs-on: ubuntu-latest
      steps:
+       - run: pwd
        - run: ls -al
        - uses: actions/checkout@v3
        - run: ls -al
