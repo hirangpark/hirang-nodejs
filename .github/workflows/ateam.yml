@@ -70,56 +70,66 @@ jobs:
 #           PEM: ${{ secrets.SSH_PEM_KEY }}
 #         run: |
 #           sops --input-type json --output-type json -d firebase.json.encrypted > firebase.json
-#       - name: Decrypt fcm service account json(partner)
+      - name: Decrypt fcm service account json(partner)
+        run: echo ''
 #         env:
 #           PEM: ${{ secrets.SSH_PEM_KEY }}
 #         run: |
 #           sops --input-type json --output-type json -d firebase-partner.json.encrypted > firebase-partner.json
-#       - name: Decrypt development.env file
+      - name: Decrypt development.env file
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/develop' }}
 #         run: |
 #           sops --input-type dotenv --output-type dotenv -d development.env.encrypted > development.env
-#       - name: Decrypt staging.env file
+      - name: Decrypt staging.env file
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/staging' }}
 #         run: |
 #           sops --input-type dotenv --output-type dotenv -d staging.env.encrypted > staging.env
-#       - name: Decrypt preproduction.env file
+      - name: Decrypt preproduction.env file
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/preproduction' }}
 #         run: |
 #           sops --input-type dotenv --output-type dotenv -d preproduction.env.encrypted > staging.env
-#       - name: Decrypt production.env file
+      - name: Decrypt production.env file
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/production' }}
 #         run: |
 #           sops --input-type dotenv --output-type dotenv -d production.env.encrypted > production.env
-#       - name: Share development.env file with build job
+      - name: Share development.env file with build job
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/develop' }}
 #         uses: actions/upload-artifact@v3
 #         with:
 #           name: dev-env
 #           path: development.env
 
-#       - name: Share staging.env file with build job
+      - name: Share staging.env file with build job
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/staging' }}
 #         uses: actions/upload-artifact@v3
 #         with:
 #           name: staging-env
 #           path: staging.env
 
-#       - name: Share preproduction.env file with build job
+      - name: Share preproduction.env file with build job
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/preproduction' }}
 #         uses: actions/upload-artifact@v3
 #         with:
 #           name: preproduction-env
 #           path: preproduction.env
 
-#       - name: Share production.env file with build job
+      - name: Share production.env file with build job
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/production' }}
 #         uses: actions/upload-artifact@v3
 #         with:
 #           name: production-env
 #           path: production.env
 
-#       - name: development Docker build and push image to Amazon ECR
+      - name: development Docker build and push image to Amazon ECR
+        run: echo ''
 #         uses: docker/build-push-action@v2
 #         if: ${{ github.ref == 'refs/heads/develop' }}
 #         env:
@@ -137,7 +147,8 @@ jobs:
 #           cache-to: type=gha,mode=max
 #           build-args: |
 #             NODE_ENV=development
-#       - name: staging Docker build and push image to Amazon ECR
+      - name: staging Docker build and push image to Amazon ECR
+        run: echo ''
 #         uses: docker/build-push-action@v2
 #         if: ${{ github.ref == 'refs/heads/staging' }}
 #         env:
@@ -156,7 +167,8 @@ jobs:
 #           cache-to: type=gha,mode=max
 #           build-args: |
 #             NODE_ENV=staging
-#       - name: preproduction Docker build and push image to Amazon ECR
+      - name: preproduction Docker build and push image to Amazon ECR
+        run: echo ''
 #         uses: docker/build-push-action@v2
 #         if: ${{ github.ref == 'refs/heads/preproduction' }}
 #         env:
@@ -174,7 +186,8 @@ jobs:
 #           cache-to: type=gha,mode=max
 #           build-args: |
 #             NODE_ENV=staging
-#       - name: production Docker build and push image to Amazon ECR
+      - name: production Docker build and push image to Amazon ECR
+        run: echo ''
 #         uses: docker/build-push-action@v2
 #         if: ${{ github.ref == 'refs/heads/production' }}
 #         env:
@@ -192,29 +205,30 @@ jobs:
 #           cache-to: type=gha,mode=max
 #           build-args: |
 #             NODE_ENV=production
-#   deploy:
-#     needs: build
-#     if: success()
-#     name: Deployment
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - uses: actions/checkout@v2
-
-#       - name: Configure AWS credentials
+  deploy:
+    needs: build
+    if: success()
+    name: Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS credentials
+        run: echo ''
 #         uses: aws-actions/configure-aws-credentials@v1
 #         with:
 #           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
 #           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 #           aws-region: ap-northeast-2
 
-#       - name: Generate Pem
+      - name: Generate Pem
+        run: echo ''
 #         env:
 #           PEM: ${{ secrets.SSH_PEM_KEY }}
 #         run: |
 #           echo -e "$PEM" > capa-api.pem
 #           chmod 400 capa-api.pem
-#       - name: Deploy Started Notification
+      - name: Deploy Started Notification
+        run: echo ''
 #         uses: mikesprague/teams-incoming-webhook-action@v1
 #         with:
 #           github-token: ${{ github.token }}
@@ -223,19 +237,21 @@ jobs:
 #           title: 'Server Restarted'
 #           color: 'info'
 
-#       - name: Download dev env file
+      - name: Download dev env file
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/develop' }}
 #         uses: actions/download-artifact@v3
 #         with:
 #           name: dev-env
-
-#       - name: Download staging env file
+      - name: Download staging env file
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/staging' }}
 #         uses: actions/download-artifact@v3
 #         with:
 #           name: staging-env
 
-#       - name: Download preproduction env file
+      - name: Download preproduction env file
+        run: echo ''
 #         if: ${{ github.ref == 'refs/heads/preproduction' }}
 #         uses: actions/download-artifact@v3
 #         with:
