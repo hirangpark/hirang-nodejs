@@ -17,12 +17,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Git Action Started Notification
       - run: echo ''
-#         uses: mikesprague/teams-incoming-webhook-action@v1
-#         with:
-#           github-token: ${{ github.token }}
-#           webhook-url: ${{ secrets.MS_TEAMS_WEBHOOK_URL }}
-#           deploy-card: true
-#           title: 'Git Action Started'
-#           color: 'info'
       - name: Import PGP(gpg) credentials
         run: echo ''
