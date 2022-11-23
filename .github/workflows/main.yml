@@ -7,20 +7,36 @@ on:
     branches: [ "main" ]
 
 jobs:
-  echo:
+  date1:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Hello!'
-  echo_if:
-    runs-on: ubuntu-latest
-    if: github.ref_name == 'dev'
+      - run: date
+  date2:
+    runs-on: windows-latest
     steps:
-      - run: echo 'Hello, Main!'
-  skip_ci:
-    runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
+      - run: date
+  date3:
+    runs-on: macos-latest
     steps:
-      - run: echo 'Hello, Skip CI!'
+      - run: date
+
+
+#   echo:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: echo 'Hello!'
+#   echo_if:
+#     runs-on: ubuntu-latest
+#     if: github.ref_name == 'dev'
+#     steps:
+#       - run: echo 'Hello, Main!'
+#   skip_ci:
+#     runs-on: ubuntu-latest
+#     if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
+#     steps:
+#       - run: echo 'Hello, Skip CI!'
+      
+      
 #   job1:
 #     runs-on: ubuntu-latest
 #     steps:
