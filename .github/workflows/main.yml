@@ -11,7 +11,6 @@ jobs:
     name: Cache
     runs-on: ubuntu-latest
     steps:
-      - run: gh actions logs --failed
       - uses: actions/checkout@v3 
       - uses: actions/cache@v3
         id: npm-cache
