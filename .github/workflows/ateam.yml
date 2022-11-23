@@ -9,13 +9,8 @@ on:
       - 'preproduction'
 
 jobs:
-  date:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
+  build:
+    name: Docker Build & Migrate DB & ECR Push
+    runs-on: ubuntu-latest
     steps:
-      - run: date
+      - uses: actions/checkout@v2
