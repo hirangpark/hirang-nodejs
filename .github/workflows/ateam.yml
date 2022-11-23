@@ -26,14 +26,3 @@ jobs:
 #           color: 'info'
       - name: Import PGP(gpg) credentials
         run: echo ''
-#         run: |
-#           echo -e "$PGP_PRIVATE_KEY" | gpg --import
-#         env:
-#           PGP_PRIVATE_KEY: ${{ secrets.PGP_PRIVATE_KEY }}
-      - name: Ckeck GPG Key
-        run: echo ''
-#         run: |
-#           gpg --version
-#           gpg --list-key paul@capa.ai
-      - name: Install sops
-        run: echo ''
