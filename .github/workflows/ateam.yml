@@ -264,6 +264,7 @@ jobs:
 
       - name: development run migration
         if: ${{ github.ref == 'refs/heads/develop' }}
+        run: echo ''
 #         env:
 #           ENV: development
 #         run: |
