@@ -47,8 +47,8 @@ jobs:
            path: hirang
        - run: ls -al
        - run: pwd
-       - run: cat .github/workflows/docker-image.yml
-       - run: cat ./app.js
+#        - run: cat .github/workflows/docker-image.yml
+#        - run: cat ./app.js
 
 
 #   build:
