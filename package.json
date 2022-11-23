@@ -6,11 +6,12 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "node app.js"
+    "test": "mocha spec"
   },
   "dependencies": {
     "express": "^4.16.1",
     "dotenv": "^10.0.0",
-    "mongoose": "^6.0.13"
+    "mongoose": "^6.0.13",
+    "mocha": "^10.1.0"
   }
 }
