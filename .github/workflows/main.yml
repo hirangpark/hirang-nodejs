@@ -11,7 +11,7 @@ jobs:
     name: Cache
     runs-on: ubuntu-latest
     steps:
-      - run: cat /home/runner/.npm/_logs/2022-11-23T07_33_15_217Z-debug-0.log
+      - run: gh actions logs --failed
       - uses: actions/checkout@v3 
       - uses: actions/cache@v3
         id: npm-cache
