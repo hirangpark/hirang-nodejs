@@ -36,7 +36,7 @@ jobs:
 #           gpg --version
 #           gpg --list-key paul@capa.ai
       - name: Install sops
-      - run: echo ''
+        run: echo ''
 #         env:
 #           SOPS_VERSION: v3.7.1
 #         run: |
