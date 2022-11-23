@@ -319,14 +319,16 @@ jobs:
 #           PEM: ${{ secrets.SSH_PEM_KEY }}
 #         run: |
 #           bash ./deploy.sh production
-#   success:
-#     needs: deploy
-#     if: success()
-#     name: Deployment Success
-#     runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Success Notification
+
+  success:
+    needs: deploy
+    if: success()
+    name: Deployment Success
+    runs-on: ubuntu-latest
+    steps:
+      - name: Success Notification\
+        run: echo ''
 #         uses: mikesprague/teams-incoming-webhook-action@v1
 #         with:
 #           github-token: ${{ github.token }}
@@ -335,14 +337,15 @@ jobs:
 #           title: 'Deployment Successful'
 #           color: 'success'
 
-#   cancelled:
-#     needs: [build, deploy]
-#     if: cancelled()
-#     name: Git Action Cancelled
-#     runs-on: ubuntu-latest
+  cancelled:
+    needs: [build, deploy]
+    if: cancelled()
+    name: Git Action Cancelled
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Cancelled MS Teams Notification
+    steps:
+      - name: Cancelled MS Teams Notification
+        run: echo ''
 #         uses: mikesprague/teams-incoming-webhook-action@v1
 #         with:
 #           github-token: ${{ github.token }}
@@ -351,15 +354,17 @@ jobs:
 #           title: 'Git Action Cancelled'
 #           color: 'warning'
 
-#   failure:
-#     needs: [build, deploy]
-#     if: failure()
-#     name: Git Action Failure
-#     runs-on: ubuntu-latest
+  failure:
+    needs: [build, deploy]
+    if: failure()
+    name: Git Action Failure
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Failure MS Teams Notification
+    steps:
+      - name: Failure MS Teams Notification
+        run: echo ''
 #         uses: mikesprague/teams-incoming-webhook-action@v1
+
 #         with:
 #           github-token: ${{ github.token }}
 #           webhook-url: ${{ secrets.MS_TEAMS_WEBHOOK_URL }}
