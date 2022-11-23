@@ -21,6 +21,7 @@ jobs:
         run: echo 'npm cache hit!'
       - if: steps.npm-cache.outputs.cache-hit != 'true'
         run: echo 'npm cache missed!'
+      - run: npm install  
       - run: npm ci
 #       - uses: actions/checkout@v3
 #       - run: npm install
