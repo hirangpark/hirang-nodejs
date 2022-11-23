@@ -7,17 +7,32 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  job1:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.4.0
-          cache: 'npm'
-      - run: npm install
-      - run: npm ci
-      - run: node -v
+      - run: echo ${{ github.job }}
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - run: echo ${{ github.job }}
+  job3:
+    runs-on: ubuntu-latest
+    needs: [job1, job2]
+    steps:
+      - run: echo ${{ github.job }}
+
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: 18.4.0
+#           cache: 'npm'
+#       - run: npm install
+#       - run: npm ci
+#       - run: node -v
       
       
 #   cache:
