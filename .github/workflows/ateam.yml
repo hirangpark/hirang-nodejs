@@ -262,17 +262,17 @@ jobs:
         with:
           name: production-env
 
-      - name: development run migration
-        if: ${{ github.ref == 'refs/heads/develop' }}
-        env:
-          ENV: development
-#         run: |
-#           bash ./db_migration.sh up
+#       - name: development run migration
+#         if: ${{ github.ref == 'refs/heads/develop' }}
+#         env:
+#           ENV: development
+# #         run: |
+# #           bash ./db_migration.sh up
 
-      - name: staging run migration
-        if: ${{ github.ref == 'refs/heads/staging' }}
-        env:
-          ENV: staging
+#       - name: staging run migration
+#         if: ${{ github.ref == 'refs/heads/staging' }}
+#         env:
+#           ENV: staging
 #         run: |
 #           bash ./db_migration.sh up
 #       - name: preproduction run migration
