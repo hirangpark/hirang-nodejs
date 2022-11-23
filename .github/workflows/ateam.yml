@@ -147,6 +147,7 @@ jobs:
 #           cache-to: type=gha,mode=max
 #           build-args: |
 #             NODE_ENV=development
+
       - name: staging Docker build and push image to Amazon ECR
         run: echo ''
 #         uses: docker/build-push-action@v2
@@ -267,6 +268,7 @@ jobs:
           ENV: development
 #         run: |
 #           bash ./db_migration.sh up
+
       - name: staging run migration
         if: ${{ github.ref == 'refs/heads/staging' }}
         env:
