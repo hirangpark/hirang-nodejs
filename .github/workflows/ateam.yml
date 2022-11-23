@@ -1,10 +1,12 @@
 name: Docker Build & Migrate DB & Deploy for EC2
-
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - 'main'
+      - 'develop'
+      - 'staging'
+      - 'production'
+      - 'preproduction'
 
 jobs:
   date:
