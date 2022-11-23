@@ -2,18 +2,18 @@ name: Docker Build & Migrate DB & Deploy for EC2
 
 on:
   push:
-    branches:
-      - 'main'
-      - 'develop'
-      - 'staging'
-      - 'production'
-      - 'preproduction'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  build:
-    name: Docker Build & Migrate DB & ECR Push
-    runs-on: ubuntu-latest
+  date:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Git Action Started Notification
-      - run: echo ''
+      - run: date
