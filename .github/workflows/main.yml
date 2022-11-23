@@ -7,23 +7,35 @@ on:
     branches: [ "main" ]
 
 jobs:
-  cache:
-    name: Cache
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 
-      - uses: actions/cache@v3
-        id: npm-cache
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - if: steps.npm-cache.outputs.cache-hit == 'true'
-        run: echo 'npm cache hit!'
-      - if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: echo 'npm cache missed!'
-      - run: npm install  
+          node-version: 18.4.0
+          cache: 'npm'
       - run: npm ci
       - run: node -v
+      
+      
+#   cache:
+#     name: Cache
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3 
+#       - uses: actions/cache@v3
+#         id: npm-cache
+#         with:
+#           path: ~/.npm
+#           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+#       - if: steps.npm-cache.outputs.cache-hit == 'true'
+#         run: echo 'npm cache hit!'
+#       - if: steps.npm-cache.outputs.cache-hit != 'true'
+#         run: echo 'npm cache missed!'
+#       - run: npm install  
+#       - run: npm ci
+#       - run: node -v
       
 #       - run: npm test
 #       - run: npm run build
