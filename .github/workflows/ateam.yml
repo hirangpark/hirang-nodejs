@@ -264,49 +264,57 @@ jobs:
 
       - name: development run migration
         if: ${{ github.ref == 'refs/heads/develop' }}
-        env:
-          ENV: development
+        run: echo ''
+#         env:
+#           ENV: development
 #         run: |
 #           bash ./db_migration.sh up
 
-#       - name: staging run migration
-#         if: ${{ github.ref == 'refs/heads/staging' }}
+      - name: staging run migration
+        if: ${{ github.ref == 'refs/heads/staging' }}
+        run: echo ''
 #         env:
 #           ENV: staging
 #         run: |
 #           bash ./db_migration.sh up
-#       - name: preproduction run migration
-#         if: ${{ github.ref == 'refs/heads/preproduction' }}
+      - name: preproduction run migration
+        if: ${{ github.ref == 'refs/heads/preproduction' }}
+        run: echo ''
 #         env:
 #           ENV: preproduction
 # #         run: |
 # #           bash ./db_migration.sh up
-#       - name: production run migration
-#         if: ${{ github.ref == 'refs/heads/production' }}
+      - name: production run migration
+        if: ${{ github.ref == 'refs/heads/production' }}
+        run: echo ''
 #         env:
 #           ENV: production
 #         run: |
 #           bash ./db_migration.sh up
-#       - name: development Run Deploy Script
-#         if: ${{ github.ref == 'refs/heads/develop' }}
+      - name: development Run Deploy Script
+        if: ${{ github.ref == 'refs/heads/develop' }}
+        run: echo ''
 #         env:
 #           PEM: ${{ secrets.SSH_PEM_KEY }}
 #         run: |
 #           bash ./deploy.sh development
-#       - name: staging Run Deploy Script
-#         if: ${{ github.ref == 'refs/heads/staging' }}
+      - name: staging Run Deploy Script
+        if: ${{ github.ref == 'refs/heads/staging' }}
+        run: echo ''
 #         env:
 #           PEM: ${{ secrets.SSH_PEM_KEY }}
 #         run: |
 #           bash ./deploy.sh staging
-#       - name: preproduction Run Deploy Script
-#         if: ${{ github.ref == 'refs/heads/preproduction' }}
+      - name: preproduction Run Deploy Script
+        if: ${{ github.ref == 'refs/heads/preproduction' }}
+        run: echo ''
 #         env:
 #           PEM: ${{ secrets.SSH_PEM_KEY }}
 #         run: |
 #           bash ./deploy.sh preproduction
-#       - name: production Run Deploy Script
-#         if: ${{ github.ref == 'refs/heads/production' }}
+      - name: production Run Deploy Script
+        if: ${{ github.ref == 'refs/heads/production' }}
+        run: echo ''
 #         env:
 #           PEM: ${{ secrets.SSH_PEM_KEY }}
 #         run: |
