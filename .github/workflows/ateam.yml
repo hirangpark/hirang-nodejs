@@ -243,46 +243,46 @@ jobs:
         with:
           name: dev-env
           
-      - name: Download staging env file
-        if: ${{ github.ref == 'refs/heads/staging' }}
-        uses: actions/download-artifact@v3
-        with:
-          name: staging-env
+#       - name: Download staging env file
+#         if: ${{ github.ref == 'refs/heads/staging' }}
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: staging-env
 
-      - name: Download preproduction env file
-        if: ${{ github.ref == 'refs/heads/preproduction' }}
-        uses: actions/download-artifact@v3
-        with:
-          name: preproduction-env
+#       - name: Download preproduction env file
+#         if: ${{ github.ref == 'refs/heads/preproduction' }}
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: preproduction-env
 
-      - name: Download production env file
-        if: ${{ github.ref == 'refs/heads/production' }}
-        uses: actions/download-artifact@v3
-        with:
-          name: production-env
+#       - name: Download production env file
+#         if: ${{ github.ref == 'refs/heads/production' }}
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: production-env
 
-      - name: development run migration
-        if: ${{ github.ref == 'refs/heads/develop' }}
-        env:
-          ENV: development
-#         run: |
-#           bash ./db_migration.sh up
-      - name: staging run migration
-        if: ${{ github.ref == 'refs/heads/staging' }}
-        env:
-          ENV: staging
-#         run: |
-#           bash ./db_migration.sh up
-      - name: preproduction run migration
-        if: ${{ github.ref == 'refs/heads/preproduction' }}
-        env:
-          ENV: preproduction
-#         run: |
-#           bash ./db_migration.sh up
-      - name: production run migration
-        if: ${{ github.ref == 'refs/heads/production' }}
-        env:
-          ENV: production
+#       - name: development run migration
+#         if: ${{ github.ref == 'refs/heads/develop' }}
+#         env:
+#           ENV: development
+# #         run: |
+# #           bash ./db_migration.sh up
+#       - name: staging run migration
+#         if: ${{ github.ref == 'refs/heads/staging' }}
+#         env:
+#           ENV: staging
+# #         run: |
+# #           bash ./db_migration.sh up
+#       - name: preproduction run migration
+#         if: ${{ github.ref == 'refs/heads/preproduction' }}
+#         env:
+#           ENV: preproduction
+# #         run: |
+# #           bash ./db_migration.sh up
+#       - name: production run migration
+#         if: ${{ github.ref == 'refs/heads/production' }}
+#         env:
+#           ENV: production
 #         run: |
 #           bash ./db_migration.sh up
 #       - name: development Run Deploy Script
