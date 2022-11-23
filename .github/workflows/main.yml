@@ -23,6 +23,8 @@ jobs:
         run: echo 'npm cache missed!'
       - run: npm install  
       - run: npm ci
+      - run: node -v
+      
 #       - run: npm test
 #       - run: npm run build
       
