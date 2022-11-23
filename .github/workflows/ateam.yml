@@ -243,23 +243,23 @@ jobs:
         with:
           name: dev-env
           
-#       - name: Download staging env file
-#         if: ${{ github.ref == 'refs/heads/staging' }}
-#         uses: actions/download-artifact@v3
-#         with:
-#           name: staging-env
+      - name: Download staging env file
+        if: ${{ github.ref == 'refs/heads/staging' }}
+        uses: actions/download-artifact@v3
+        with:
+          name: staging-env
 
-#       - name: Download preproduction env file
-#         if: ${{ github.ref == 'refs/heads/preproduction' }}
-#         uses: actions/download-artifact@v3
-#         with:
-#           name: preproduction-env
+      - name: Download preproduction env file
+        if: ${{ github.ref == 'refs/heads/preproduction' }}
+        uses: actions/download-artifact@v3
+        with:
+          name: preproduction-env
 
-#       - name: Download production env file
-#         if: ${{ github.ref == 'refs/heads/production' }}
-#         uses: actions/download-artifact@v3
-#         with:
-#           name: production-env
+      - name: Download production env file
+        if: ${{ github.ref == 'refs/heads/production' }}
+        uses: actions/download-artifact@v3
+        with:
+          name: production-env
 
 #       - name: development run migration
 #         if: ${{ github.ref == 'refs/heads/develop' }}
