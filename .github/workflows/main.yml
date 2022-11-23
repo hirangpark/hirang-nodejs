@@ -13,7 +13,7 @@ jobs:
       - run: echo 'Hello!'
   echo_if:
     runs-on: ubuntu-latest
-    if: github.ref_name == 'main'
+    if: github.ref_name == 'dev'
     steps:
       - run: echo 'Hello, Main!'
   skip_ci:
