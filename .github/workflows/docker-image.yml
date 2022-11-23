@@ -43,6 +43,8 @@ jobs:
        - run: pwd
        - run: ls -al
        - uses: actions/checkout@v3
+         with:
+           path: hirang
        - run: ls -al
        - run: pwd
        - run: cat .github/workflows/docker-image.yml
