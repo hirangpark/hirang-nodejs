@@ -24,7 +24,7 @@ jobs:
         run: |
           aws deploy create-deployment \
             --application-name application-name \
-            --deployment-group-name AppDeploymentGroupName \
+            --deployment-group-name NodejsDeployGroup \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
 #   job_echo:
