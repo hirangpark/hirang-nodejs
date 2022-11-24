@@ -7,46 +7,66 @@ on:
     branches: [ "main" ]
     
 jobs:
-  job_echo:
-    runs-on: ubuntu-latest
-    steps:
-      - name: GITHUB_REF
-        run: echo ${{github.ref}} 
-      - name: GITHUB_SHA
-        run: echo ${{github.sha}}
+  runs-on: ubuntu-latest
+  needs: [continuous-integration]
+  if: github.ref == 'refs/heads/main'
+  steps:
+   # Step 1
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id:${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key:${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-2
+   # Step 2
+    - name: Create CodeDeploy Deployment
+      id: deploy
+      run: |
+        aws deploy create-deployment \
+          --application-name application-name \
+          --deployment-group-name AppDeploymentGroupName \
+          --deployment-config-name CodeDeployDefault.OneAtATime \
+          --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+#   job_echo:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: GITHUB_REF
+#         run: echo ${{github.ref}} 
+#       - name: GITHUB_SHA
+#         run: echo ${{github.sha}}
       
         
-  job_pwd_ls:
-    name: PWD & LS
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print working directory
-        run: pwd
-      - name: List files
-        run: ls -al
-  job_checkout:
-     name: Check out
-     runs-on: ubuntu-latest
-     steps:
-       - run: pwd
-       - run: ls -al
-       - uses: actions/checkout@v3
-       - run: ls -al
-       - run: pwd
-       - run: cat .github/workflows/docker-image.yml
-       - run: cat ./app.js
+#   job_pwd_ls:
+#     name: PWD & LS
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Print working directory
+#         run: pwd
+#       - name: List files
+#         run: ls -al
+#   job_checkout:
+#      name: Check out
+#      runs-on: ubuntu-latest
+#      steps:
+#        - run: pwd
+#        - run: ls -al
+#        - uses: actions/checkout@v3
+#        - run: ls -al
+#        - run: pwd
+#        - run: cat .github/workflows/docker-image.yml
+#        - run: cat ./app.js
        
-  job_checkout1:
-     name: Check out1
-     runs-on: ubuntu-latest
-     steps:
-       - run: pwd
-       - run: ls -al
-       - uses: actions/checkout@v3
-         with:
-           path: hirang
-       - run: ls -al
-       - run: pwd
+#   job_checkout1:
+#      name: Check out1
+#      runs-on: ubuntu-latest
+#      steps:
+#        - run: pwd
+#        - run: ls -al
+#        - uses: actions/checkout@v3
+#          with:
+#            path: hirang
+#        - run: ls -al
+#        - run: pwd
 #        - run: cat .github/workflows/docker-image.yml
 #        - run: cat ./app.js
 
