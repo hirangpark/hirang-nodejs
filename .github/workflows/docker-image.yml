@@ -2,9 +2,9 @@ name: 랑스의 테스트
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "test" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "test" ]
     
 jobs:
   build:
