@@ -1,4 +1,4 @@
-name: Docker Build & Migrate DB & Deploy for EC2
+name: ATeam Docker Build & Migrate DB & Deploy for EC2
 
 on:
   push:
