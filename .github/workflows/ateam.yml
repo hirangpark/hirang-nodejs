@@ -3,7 +3,7 @@ name: ATeam Docker Build & Migrate DB & Deploy for EC2
 on:
   push:
     branches:
-      - 'main'
+      - 'test'
       - 'develop'
       - 'staging'
       - 'production'
