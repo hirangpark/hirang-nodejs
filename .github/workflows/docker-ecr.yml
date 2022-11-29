@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SSH remote ecr pull
-        uses: appleboy/ssh-action@v0.1.5
+        uses: appleboy/ssh-action@v0.1.4
         with:
          host: ${{secrets.AWS_HIRANG_IP}}
          username: ${{secrets.AWS_HIRANG_USERNAME}}
