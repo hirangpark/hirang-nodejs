@@ -19,14 +19,15 @@ jobs:
     name: gpg check 
     runs-on: ubuntu-latest
     steps: 
-      - name: Import PGP(gpg) credentials
-        run: |
-          echo -e "${{ secrets.GPG_HIRANG_PRIVATE }}" > test
-          cat test
-          #echo -e "${{ secrets.GPG_HIRANG_PRIVATE }}" | gpg --import
-        env:
-          PGP_PRIVATE_KEY: ${{ secrets.GPG_HIRANG_PRIVATE }}
-      
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_HIRANG01_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_HIRANG01_PASSPHRASE }}
+      - name: List keys
+        run: gpg -K
+          
       - name: Ckeck GPG Key
         run: |
           gpg --version
