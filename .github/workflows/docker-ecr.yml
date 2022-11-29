@@ -62,7 +62,7 @@ jobs:
          host: ${{secrets.AWS_HIRANG_IP}}
          username: ${{secrets.AWS_HIRANG_USERNAME}}
          key: ${{secrets.AWS_HIRANG_SSH}}
-#          ec2에서 sh파일을 만들어서 실행
+#          ec2에서 sh파일을 만들어서 실행 
          script: |    
            aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.ap-northeast-2.amazonaws.com"
            docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi ${{ env.DOCKER_IMAGE }}:$VERSION
