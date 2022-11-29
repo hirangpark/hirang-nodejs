@@ -7,9 +7,9 @@ on:
 
 # 환경설정
 env:
-  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/hirang-nodejs
+  DOCKER_IMAGE: 042568141900.dkr.ecr.ap-northeast-2.amazonaws.com/identicalhirang
   VERSION: ${{ github.sha }}
-  NAME: nodejs
+  NAME: hirang-nodejs-ecr
 
 jobs:
   # 빌드 Job
@@ -46,25 +46,36 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: identicalhirang
-          IMAGE_TAG: ${{ github.sha }}
+#           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          docker build -t $REGISTRY/$REPOSITORY:$VERSION .
+          docker push $REGISTRY/$REPOSITORY:$VERSION
   # 배포 Job
   deploy:
     needs: build  # build 후에 실행되도록 정의
     name: Deploy
-    runs-on: [ self-hosted, hirang-host ] # AWS ./configure에서 사용할 label명
+    runs-on: ubuntu-latest
     steps:
-      - name: Login to ghcr
-        run: echo "aaa"
-#         uses: docker/login-action@v1
+      - name: SSH remote ecr pull
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+         host: ${{secrets.AWS_HIRANG_IP}}
+         username: ${{secrets.AWS_HIRANG_USERNAME}}
+         key: ${{secrets.AWS_HIRANG_SSH}}
+#          ec2에서 sh파일을 만들어서 실행
+         script: |    
+           aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.ap-northeast-2.amazonaws.com"
+           docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi ${{ env.DOCKER_IMAGE }}:$VERSION
+           docker pull ${{ env.DOCKER_IMAGE }}:$VERSION
+           docker run -d -p 8090:8080 --name ${{ env.NAME }} --restart always ${{ env.DOCKER_IMAGE }}:$VERSION
+           
+           
+           
+#       - name: Login to ECR
+#         uses: docker/login-action@v2
 #         with:
-#           registry: ghcr.io
-#           username: ${{ github.actor }}
-#           password: ${{ secrets.HIRANG_TOKEN }}
-#       # 3000 -> 80 포트로 수행하도록 지정
-#       - name: Docker run
-#         run: |
-#           docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi ${{ env.DOCKER_IMAGE }}:latest
-#           docker run -d -p 8080:8080 --name ${{ env.NAME }} --restart always ${{ env.DOCKER_IMAGE }}:latest
+#           registry: 042568141900.dkr.ecr.ap-northeast-2.amazonaws.com
+# #           registry: <aws-account-number>.dkr.ecr.<region>.amazonaws.com
+#           username: ${{ secrets.AWS_ECR_ACCESS_KEY_ID }}
+#           password: ${{ secrets.AWS_ECR_SECRET_ACCESS_KEY }}         
+          
