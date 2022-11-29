@@ -21,7 +21,7 @@ jobs:
     steps: 
       - name: Import PGP(gpg) credentials
         run: |
-          echo -e "$GPG_HIRANG_PRIVATE" | gpg --import
+          echo -e "${{ secrets.PGP_PRIVATE_KEY }}" | gpg --import
         env:
           PGP_PRIVATE_KEY: ${{ secrets.GPG_HIRANG_PRIVATE }}
       
