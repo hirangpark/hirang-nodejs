@@ -65,7 +65,7 @@ jobs:
 #        향후 ec2에서 sh파일을 만들어서 실행 
          script: |    
            aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.ap-northeast-2.amazonaws.com"
-           docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi ${{ env.DOCKER_IMAGE }}
+           docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi $(docker images -q ${{ env.DOCKER_IMAGE }})
            docker pull ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
            docker run -d -p 8090:8080 --name ${{ env.NAME }} --restart always ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
            
