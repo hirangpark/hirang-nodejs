@@ -8,12 +8,12 @@ jobs:
   build:
     strategy:
       matrix:
-       symbol-list: [ko,jp,tw,cn,us]
+       region: [ko,jp,tw,cn,us]
     name: strategy test
     runs-on: ubuntu-latest
     steps:
-      - name: $
+      - name: ${{ matrix.region }}
         run: |
-          echo symbol=$
+          echo ${{ matrix.region }}
         
     
