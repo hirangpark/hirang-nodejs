@@ -8,12 +8,25 @@ jobs:
   build:
     strategy:
       matrix:
-       region: [ko,jp,tw,cn,us]
+       region: [ko,jp,tw]
     name: strategy test
     runs-on: ubuntu-latest
     steps:
       - name: ${{ matrix.region }}
         run: |
-          echo ${{ matrix.region }}
-        
+          echo ${{ matrix.region }}   
+  check:
+    name: gpg check 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Import PGP(gpg) credentials
+        run: |
+          echo -e "$PGP_PRIVATE_KEY" | gpg --import
+        env:
+          PGP_PRIVATE_KEY: ${{ secrets.GPG_HIRANG_PRIVATE }}
+      
+      - name: Ckeck GPG Key
+        run: |
+          gpg --version
+          gpg --list-key 
     
