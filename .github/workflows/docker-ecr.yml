@@ -42,20 +42,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
             
-#       - name: Build, tag, and push docker image to Amazon ECR
-#         env:
-#           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-#           REPOSITORY: identicalhirang
-#         run: |
-#           docker build -t $REGISTRY/$REPOSITORY:$VERSION .
-#           docker push $REGISTRY/$REPOSITORY:$VERSION
-          
-      - name: Import PGP(gpg) credentials
-        run: |
-          echo -e "$PGP_PRIVATE_KEY" | gpg --import
+      - name: Build, tag, and push docker image to Amazon ECR
         env:
-          PGP_PRIVATE_KEY: ${{ secrets.GPG_HIRANG01_PRIVATE_KEY }}
-          
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: identicalhirang
+        run: |
+          docker build -t $REGISTRY/$REPOSITORY:$VERSION .
+          docker push $REGISTRY/$REPOSITORY:$VERSION          
   # 배포 Job
   deploy:
     needs: build  # build 후에 실행되도록 정의
