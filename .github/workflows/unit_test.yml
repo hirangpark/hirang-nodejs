@@ -19,10 +19,14 @@ jobs:
     name: gpg check 
     runs-on: ubuntu-latest
     steps: 
+      - name: Ckeck GPG Key
+        run: |
+          gpg --version
+          gpg --list-key 
                   
       - name: Import PGP(gpg) credentials
         run: |
-          echo -e "$PGP_PRIVATE_KEY" | gpg --import
+          echo -e "${{ secrets.GPG_HIRANG01_PRIVATE_KEY }}" | gpg --import
         env:
           PGP_PRIVATE_KEY: ${{ secrets.GPG_HIRANG01_PRIVATE_KEY }}
 
@@ -35,8 +39,5 @@ jobs:
 #       - name: List keys
 #         run: gpg -K
           
-      - name: Ckeck GPG Key
-        run: |
-          gpg --version
-          gpg --list-key 
+      
     
