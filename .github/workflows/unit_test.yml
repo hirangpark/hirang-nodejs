@@ -41,5 +41,13 @@ jobs:
           gpg -K
           gpg --list-keys
           
+      - name: Install sops
+        env:
+          SOPS_VERSION: v3.7.1
+        run: |
+          wget https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux
+          chmod +x ./sops-${SOPS_VERSION}.linux
+          sudo mv ./sops-${SOPS_VERSION}.linux /usr/local/bin/sops
+          
       
     
